@@ -1,4 +1,7 @@
-# zdog-editor
+# Zdog Editor
+A simple editor for the [Zdog 3D engine](https://zzz.dog).
+
+![screenshot](./assets/screenshot.png)
 
 ## Project setup
 ```
