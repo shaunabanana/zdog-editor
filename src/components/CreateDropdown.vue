@@ -5,6 +5,7 @@
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item command="Anchor"> Anchor </el-dropdown-item>
+      <el-dropdown-item command="Group"> Group </el-dropdown-item>
       <el-dropdown-item command="Rect"> Rect </el-dropdown-item>
       <el-dropdown-item command="RoundedRect"> RoundedRect </el-dropdown-item>
       <el-dropdown-item command="Ellipse"> Ellipse </el-dropdown-item>

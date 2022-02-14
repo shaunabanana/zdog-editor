@@ -109,19 +109,20 @@ export default {
       });
     },
 
+    recursiveUpdateId(data) {
+      data.id = uuidv4();
+      for (let child of data.children) {
+        this.recursiveUpdateId(child);
+      }
+    },
+
     duplicateNode (node, data) {
         const parent = node.parent;
         const children = parent.data.children || parent.data;
         // console.log(data, parent, children);
-        children.push({
-          id: uuidv4(),
-          label: data.type,
-          type: data.type,
-          props: data.props ? JSON.parse(JSON.stringify(data.props)) : {},
-          children: []
-        });
-        // const index = children.findIndex(d => d.id === data.id);
-        // children.splice(index, 1);
+        let newChild = JSON.parse(JSON.stringify(data));
+        this.recursiveUpdateId(newChild);
+        children.push(newChild);
     },
 
     removeNode(node, data) {
