@@ -1,5 +1,7 @@
 # Zdog Editor
-A simple editor for the [Zdog 3D engine](https://zzz.dog).
+A simple editor for the [Zdog 3D engine](https://zzz.dog). 
+
+[Playable demo here](https://shaunabanana.github.io/zdog-editor/).
 
 ![screenshot](./assets/screenshot.png)
 
