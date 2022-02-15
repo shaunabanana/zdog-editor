@@ -13,6 +13,7 @@ export default {
   name: "SceneEditor",
   props: {
     scene: Array,
+    axes: Boolean,
     background: {
       type: String,
       default: "#FDB",
@@ -33,10 +34,10 @@ export default {
       let props = JSON.parse(JSON.stringify(element.props));
       props.addTo = parent;
       let shape = new Zdog[element.type](props);
-      console.log({
-        id: element.id,
-        shape: shape,
-      });
+      // console.log({
+      //   id: element.id,
+      //   shape: shape,
+      // });
       this.$emit("new-shape", {
         id: element.id,
         shape: shape,
@@ -48,70 +49,73 @@ export default {
 
     setup() {
       this.$emit("setup");
+
       this.illustration = new Zdog.Illustration({
         element: this.$refs.canvas,
         dragRotate: true,
         resize: true,
       });
 
-      let origin = new Zdog.Shape({
-        addTo: this.illustration,
-        color: "#636",
-        stroke: 3,
-      });
+      if (this.axes) {
+        let origin = new Zdog.Shape({
+          addTo: this.illustration,
+          color: "#636",
+          stroke: 3,
+        });
 
-      new Zdog.Polygon({
-        addTo: origin,
-        radius: 5,
-        sides: 3,
-        translate: { x: 100 },
-        rotate: {z: -Math.PI / 6},
-        stroke: 5,
-        fill: true,
-        color: "#C25",
-      });
+        new Zdog.Polygon({
+          addTo: origin,
+          radius: 5,
+          sides: 3,
+          translate: { x: 100 },
+          rotate: { z: -Math.PI / 6 },
+          stroke: 5,
+          fill: true,
+          color: "#C25",
+        });
 
-      new Zdog.Shape({
-        addTo: origin,
-        path: [{}, { x: 100 }],
-        color: "#C25",
-        stroke: 3,
-      });
+        new Zdog.Shape({
+          addTo: origin,
+          path: [{}, { x: 100 }],
+          color: "#C25",
+          stroke: 3,
+        });
 
-      new Zdog.Polygon({
-        addTo: origin,
-        radius: 5,
-        sides: 3,
-        translate: { y: -100 },
-        stroke: 5,
-        fill: true,
-        color: "#E62",
-      });
+        new Zdog.Polygon({
+          addTo: origin,
+          radius: 5,
+          sides: 3,
+          translate: { y: -100 },
+          stroke: 5,
+          fill: true,
+          color: "#E62",
+        });
 
-      new Zdog.Shape({
-        addTo: origin,
-        path: [{}, { y: -100 }],
-        color: "#E62",
-        stroke: 3,
-      });
+        new Zdog.Shape({
+          addTo: origin,
+          path: [{}, { y: -100 }],
+          color: "#E62",
+          stroke: 3,
+        });
 
-      new Zdog.Polygon({
-        addTo: origin,
-        radius: 5,
-        sides: 3,
-        translate: { z: 100 },
-        rotate: {z: -Math.PI / 6, y: Math.PI / 2},
-        stroke: 5,
-        fill: true,
-        color: "#636",
-      });
+        new Zdog.Polygon({
+          addTo: origin,
+          radius: 5,
+          sides: 3,
+          translate: { z: 100 },
+          rotate: { z: -Math.PI / 6, y: Math.PI / 2 },
+          stroke: 5,
+          fill: true,
+          color: "#636",
+        });
 
-      new Zdog.Shape({
-        addTo: origin,
-        path: [{}, { z: 100 }],
-        color: "#636",
-        stroke: 3,
-      });
+        new Zdog.Shape({
+          addTo: origin,
+          path: [{}, { z: 100 }],
+          color: "#636",
+          stroke: 3,
+        });
+      }
 
       for (let element of this.scene) {
         this.construct(element, this.illustration);
